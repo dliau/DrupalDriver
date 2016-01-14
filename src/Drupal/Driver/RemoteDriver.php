@@ -243,7 +243,7 @@ class RemoteDriver extends BaseDriver implements DriverInterface {
    */
   public function nodeDelete($node) {
     try {
-      $this->api('node')->nodeDelete($node);
+      $this->api('node')->deleteNode($node);
     }
     catch (\Exception $e) {
       throw new \RuntimeException($e->getMessage());

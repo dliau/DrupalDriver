@@ -40,6 +40,8 @@ class Node extends BaseDrupalRemoteAPI {
         $result = $this->post('/node', $node);
         $this->confirmResponseStatusCodeIs200($result);
         $newNode['nid'] = (int) $result['id'];
+        // Add URI to the node object.
+        $newNode['uri'] = $result['uri'];
         return (object) $newNode;
     }
 
@@ -132,19 +134,7 @@ class Node extends BaseDrupalRemoteAPI {
 
                                 // Special handling for date fields (start/end).
                                 // @todo generalize this
-                                if ('date' === $info['module']) {
-                                    // Dates passed in separated by a comma are start/end dates.
-                                    $dates = explode(',', $value);
-                                    $value = trim($dates[0]);
-                                    if (!empty($dates[1])) {
-                                        $column2 = array_shift($column_names);
-                                        $new_entity->{$param}[$column2] = trim($dates[1]);
-                                    }
-                                    $new_entity->{$param}[$column] = $value;
-                                }
-
-                                // Special handling for term references.
-                                elseif ('taxonomy' === $info['module']) {
+                                if ('taxonomy' === $info['module']) {
                                     $this->getAndSetTermsMetadata($value);
                                     $max_field_values = (int) $info['cardinality'];
                                     $this->confirmNumberOfTermsAreNotGreaterThanFieldLimit($max_field_values, $param);

@@ -231,7 +231,7 @@ class RemoteDriver extends BaseDriver implements DriverInterface {
    */
   public function createNode($node, array $config = array()) {
     try {
-      return $this->api('node')->nodeCreate($node, $config);
+      return $this->api('node')->createNode($node, $config);
     }
     catch (\Exception $e) {
       throw new \RuntimeException($e->getMessage());

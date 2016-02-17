@@ -27,7 +27,7 @@ class Node extends BaseDrupalRemoteAPI {
     /**
      * Create Node
      */
-    public function createNode($node)
+    public function nodeCreate($node)
     {
         $this->getAndSetRemoteApiMetadata($node);
 
@@ -48,7 +48,7 @@ class Node extends BaseDrupalRemoteAPI {
     /**
      * Delete Node
      */
-    public function deleteNode($node)
+    public function nodeDelete($node)
     {
        $this->delete('/node/'.$node->nid);
     }

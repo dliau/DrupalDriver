@@ -66,6 +66,8 @@ class Client {
       CURLOPT_SSL_VERIFYHOST => false,
       CURLOPT_SSL_VERIFYPEER => false,
     ],
+    // TODO: Remove this and make it a configurable option in the yml file.
+    'ssl.certificate_authority' => false,
     'cache_dir'   => null
   );
 

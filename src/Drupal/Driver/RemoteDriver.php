@@ -276,4 +276,14 @@ class RemoteDriver extends BaseDriver implements DriverInterface {
   public function api($api_name) {
     return $this->getClient()->api($api_name);
   }
+
+/**
+ * Returns the remote User Login from Drupal config (Admin User).
+ *
+ * @return string
+ *   Remote User name.
+ */
+  public function getLoginUsername() {
+    return $this->login_username;
+  }
 }

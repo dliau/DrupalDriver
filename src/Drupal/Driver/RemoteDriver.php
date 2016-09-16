@@ -109,6 +109,7 @@ class RemoteDriver extends BaseDriver implements DriverInterface {
       $drupalRemoteClient = new $remote_class();
       $drupalRemoteClient->setOption('base_url', $this->remote_site_url);
       $drupalRemoteClient->authenticate($this->login_username, $this->login_password, 'http_drupal_login', $this->request_cookie);
+
       $this->remote_client = $drupalRemoteClient;
     }
     $this->bootstrapped = TRUE;
@@ -277,13 +278,33 @@ class RemoteDriver extends BaseDriver implements DriverInterface {
     return $this->getClient()->api($api_name);
   }
 
-/**
- * Returns the remote User Login from Drupal config (Admin User).
- *
- * @return string
- *   Remote User name.
- */
+  /**
+   * Returns the remote User Login from Drupal config (Admin User).
+   *
+   * @return string
+   *   Remote User name.
+   */
   public function getLoginUsername() {
     return $this->login_username;
+  }
+
+  /**
+   * Returns the remote User Password from Drupal config (Admin User).
+   *
+   * @return string
+   *   Remote User name.
+   */
+  public function getLoginPassword() {
+    return $this->login_password;
+  }
+
+  /**
+  * Returns the remote User request cookie.
+  *
+  * @return string
+  *   Remote User name.
+  */
+  public function getRequestCookie() {
+    return $this->request_cookie;
   }
 }
